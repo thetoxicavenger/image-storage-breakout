@@ -49,6 +49,18 @@ app.use(flash());
 
 app.get('/admin/users/:id', (req, res) => {
     if (!req.params.id) return res.sendStatus(422)
+    if (req.params.id === 'new') {
+        const emptyUser = {
+            firstName: '',
+            lastName: '',
+            handle: '',
+            displayRealName: '',
+            bio: '',
+            imgUrl: '',
+            admin: '',
+        }
+        return res.render('pages/newuser', { user: emptyUser })
+    }
     knex('users')
         .where('id', req.params.id)
         .then(user => {
@@ -140,20 +152,6 @@ app.get('/admin/users', (req, res) => {
             res.render('pages/users', { users })
         })
 
-})
-
-app.get('/admin/users/new', (req, res) => {
-    res.render('pages/newuser', {
-        user: {
-            firstName: '',
-            lastName: '',
-            handle: '',
-            displayRealName: '',
-            bio: '',
-            imgUrl: '',
-            admin: '',
-        }
-    })
 })
 
 app.listen(process.env.PORT || 3000)
