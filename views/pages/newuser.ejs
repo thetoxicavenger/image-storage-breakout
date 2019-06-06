@@ -1,0 +1,40 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h3>Create User</h3>
+            <form action="/api/admin/users" method="POST">
+                <% for(var i = 0; i< Object.keys(user).length; i++){ %>
+                    <% if (Object.keys(user)[i] !== 'id' && Object.keys(user)[i] !== 'created_at' && Object.keys(user)[i] !== 'updated_at') { %>
+                        <div>
+                            <label for="<%= Object.keys(user)[i] %>"><%= Object.keys(user)[i] %></label>
+                            <input type="text" value="<%= user[Object.keys(user)[i]] %>" name="<%= Object.keys(user)[i] %>">
+                        </div>
+                    <% } %>
+                <% } %>
+                <div>
+                    <input type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+
+</html>

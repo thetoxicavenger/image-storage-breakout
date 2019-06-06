@@ -1,0 +1,35 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h1>All Users</h1>
+        </div>
+        <% for(var i = 0; i< users.length; i++){ %>
+        <div class="card">
+            <h3><a href="/admin/users/<%=users[i].id%>"><%= users[i].firstName %> <%= users[i].lastName %></a></h3>
+        </div>
+        <% } %>
+        <div>
+            <a href="/admin/users/new">New User</a>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+
+</html>

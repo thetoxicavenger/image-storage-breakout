@@ -1,0 +1,45 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body class="container">
+
+    <% if (message === 'User created!' || message === 'User updated!' || message === 'User image updated!') { %>
+    <div class="alert alert-success" role="alert">
+        <%= message %>
+    </div>
+
+    <% } %>
+
+    <% if (message === 'Something went wrong. Please refresh the page and try again.') { %>
+        <div class="alert alert-danger" role="alert">
+            <%= message %>
+        </div>
+    
+    <% } %>
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h1><%= user.firstName  %> <%= user.lastName  %></h1>
+            <img src="<%= user.imgUrl %>">
+            <div>
+                <a href="/admin/users/<%= user.id %>/edit">Edit</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+
+</html>

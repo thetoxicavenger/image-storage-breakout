@@ -1,0 +1,58 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body class="container">
+
+        <% if (message === 'fields cannot be empty') { %>
+            <div class="alert alert-danger" role="alert">
+                <%= message %>
+            </div>
+        
+        <% } %>
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h3>Edit User</h3>
+            <form action="/api/admin/users/<%= user.id %>/image" method="POST" enctype="multipart/form-data" style="margin-bottom: 20px; margin-top: 20px;">
+                <div>
+                    <label>Upload profile image</label>
+                </div>
+                <div>
+                    <input type="file" name="user_image">
+                </div>
+                <div style="margin-top: 10px;">
+                    <input type="Submit" value="Upload">
+                </div>
+            </form>
+            <form action="/api/admin/users/<%= user.id %>" method="POST">
+                <% for(var i = 0; i< Object.keys(user).length; i++){ %>
+                    <% if (Object.keys(user)[i] !== 'id' && Object.keys(user)[i] !== 'created_at' && Object.keys(user)[i] !== 'updated_at' && Object.keys(user)[i] !== 'imgUrl') { %>
+                        <div>
+                            <label><%= Object.keys(user)[i] %></label>
+                            <input type="text" value="<%= user[Object.keys(user)[i]] %>" name="<%= Object.keys(user)[i] %>">
+                        </div>
+                    <% } %>
+                <% } %>
+                <div>
+                    <input type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+
+</html>
