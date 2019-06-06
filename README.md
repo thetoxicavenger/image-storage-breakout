@@ -10,6 +10,18 @@
 ```
 heroku create # create heroku project from the command line
 # go to https://heroku.com/verify to add a credit card
+
+# setup db
+heroku addons:create heroku-postgresql:hobby-dev
+
+npm i -g knex
+
+heroku config:set DATABASE_URL={your_database_url}
+heroku config:set NODE_ENV=production
+
+heroku run knex migrate:latest
+heroku run knex seed:run
+
 heroku addons:create bucketeer:hobbyist
 # environment variables for s3 bucket are automatically added to your heroku config
 # add env vars locally
@@ -31,6 +43,9 @@ unzip awscli-bundle.zip
 aws s3 ls s3://bucketeer-e9ddbbfa-c913-43ac-af8c-353a7688f2ab
 
 ```
+
+## Deployed url:
+https://peaceful-savannah-24654.herokuapp.com
 
 ## Resources
 https://elements.heroku.com/addons/bucketeer
