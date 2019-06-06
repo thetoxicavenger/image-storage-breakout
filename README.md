@@ -14,7 +14,7 @@ heroku addons:create bucketeer:hobbyist
 # environment variables for s3 bucket are automatically added to your heroku config
 # add env vars locally
 heroku config:get -s | grep BUCKETEER > .env
-npm i --save-dev dotenv
+npm i --save dotenv
 # add dotenv to index.js -> require('dotenv').config()
 npm i --save multer # image upload middleware
 npm i --save multer-s3
